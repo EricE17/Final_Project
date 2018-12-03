@@ -34,14 +34,14 @@ shinyServer(function(input,output){
     output$boxplot1 <- renderPlot({
        
        l <- ggplot(merged, aes(month, SWE)) + 
-        geom_boxplot(fill = "Blue") 
+            geom_boxplot(fill = "Blue") 
        l
     })      
        
        output$boxplot2 <- renderPlot({
          
        p <- ggplot(merged, aes(month, Discharge)) + 
-         geom_boxplot(fill ="Red") 
+            geom_boxplot(fill ="Red")  
        p
     })
        
@@ -49,11 +49,11 @@ shinyServer(function(input,output){
        
        output$SWEdischarge <- renderPlot({
          
-         mp <- ggplot(filteredmerged,aes(x=mergeddischarge,y=mergedSWE),
+         mp <- ggplot(filteredmerged,aes(x=mergeddischarge,y=mergedSWEdrop),
                       size=20) +
                       geom_jitter(colour=alpha("Blue",.15), size=3.25) +
-                      labs(x="Discharge, cfs",y="SWE, inches",
-                      title="Alignment of SWE to Discharge",
+                      labs(x="Discharge, cfs",y="Drop in SWE Between Days, inches",
+                      title="Alignment of SWE Drop to Discharge",
                       subtitle = "Location: Big Cottonwood Stream") +
                       stat_smooth(method = "lm", col = "red")
                    ####  R-squared value needs to be added here  ####
