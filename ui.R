@@ -36,7 +36,7 @@ shinyUI(fluidPage(
     submitButton("Submit"),
     
     #otes to user  
-    helpText("Note:***notes for using the side bar controls", style = "color:red")
+    helpText("Note:***Review User Guide before moving forward***", style = "color:red")
     ),
 
     
@@ -46,13 +46,15 @@ shinyUI(fluidPage(
 
 # Show outputs, text, etc. in the main panel
        h3(strong("User Guide"),style = "color:blue"),
-       h5("Step 1: ###",style = "color:blue"),
-       h5("Step 2: ###",style = "color:blue"),
-       h5("Step 3: ###",style = "color:blue"),
+       h5("Step 1: Select Site Location",style = "color:blue"),
+       h5("Step 2: Define Period of Study",style = "color:blue"),
+       h5("Step 3: Check Box to Display SWE Data in First Plot",style = "color:blue"),
+       h5("Step 4: Check Submit Button to Populate",style = "color:blue"),
+       h5("Step 5: Select Additional Tabs to View Other Information",style = "color:blue"),
      
 # Output: Tabset w/ plot, summary, and table ----
     tabsetPanel(type = "tabs",
-              tabPanel("Plot", plotOutput("futureplot")),
+              tabPanel("Plot", plotOutput("futureplot"), plotOutput("Futureplot")),
               tabPanel("SWE to Dischrage", plotOutput("SWEdischarge")),
               tabPanel("Box Plots", plotOutput("boxplot1"), plotOutput("boxplot2")),
               tabPanel("Site Map", leafletOutput("mymap",height = 500)),

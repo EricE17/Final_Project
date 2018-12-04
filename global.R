@@ -56,15 +56,20 @@ merged$Date.y <- NULL
 merged$X_00060_00003_cd <- NULL
 merged$tz_cd <- NULL
 
+
+#SWE difference between two adjoining events
+merged$SWEdrop <- c(0,  diff(merged$SWE, lag = 1, differences = 1))
+
 # removal of low SWE and discharge values (values below 2.0 have been removed)
 # variable removal
-mergedSWE <- merged$SWE
+mergedSWEdrop <- merged$SWEdrop
 mergeddischarge <- merged$Discharge
 
 # dataframe compilation
-filteredmergeddataframe <- data.frame(mergedSWE,mergeddischarge)
+filteredmerged <- data.frame(mergedSWEdrop,mergeddischarge)
 
 # new filtered data file
-filteredmerged <- filteredmergeddataframe[ which(filteredmergeddataframe$mergedSWE > 2 & filteredmergeddataframe$mergeddischarge > 2 ),]
+filteredmerged <- filteredmerged[ which(filteredmerged$mergedSWEdrop > -3 & filteredmerged$mergedSWEdrop < -0.1 & filteredmerged$mergeddischarge > 4 ),]
 
-
+# absolute value of mergedSWEdrop
+filteredmerged$mergedSWEdrop <- abs(filteredmerged$mergedSWEdrop)
